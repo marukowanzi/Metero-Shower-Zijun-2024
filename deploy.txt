@@ -1,0 +1,39 @@
+*****
+My fork Link is: https://github.com/marukowanzi/dfpi-cromulon-dimension-zijun
+*****
+
+
+1.
+Firstly, create a vfx graph: vfx_meteorshower.  
+Set the shower's rate in the "spawn" at 10, it is much enough. 
+Set the shape of arc cone in the "initialize particle". set its mode to volume. Also, set its radius to 10 both at the top and the base.set its initial position on 20 above the groud, to make it looks like falling down from a height.
+In the "velocity random", A is for min, B is for max, because we want it to drop down slantingly, so the velocity is (0, -30, 10), and the min(A) is multiplied by 0.8, max(B) is multiplied by 1.0.
+Set meteorlifetime to 3, because it may not need to long to drop down. 
+
+2.
+Then, in order to form trailing effect, I add a trigger event rate at "update particle". Change the spawn system to GPU event.(which can Trigger New Particle Systems).
+In the initialize particle strip, it should inherit the source position from the start point to form a trail. So add the "inherit source position". 
+And also, set its lifetime and size. 
+And, change the "update particle" of trigger event rate to "over distance" to make it drop down very gentle. 
+Then, duplicate the trail part and change its name to "trail front". Remain the other be the same, but change the trailsize multiply by 0.2, and change its color to bright, it is the front bright side.  Also, the traillifetime should multiply by 0.5 because it should be shorter. 
+Choose the trailtexture downloaded from website for both "trailfront" and "trailback". 
+
+3.Then begin the to create the "sparks", when the shower hits the ground, it will haev sparks. 
+Give a force(gravity) of 10 in the y axis, to make it fly up. It should orient along the velocity. 
+Set the scale of sparks from 0.1,0.5,1 to 0.3,1,1.
+Also, set the size variation from orient, and set color variation. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
